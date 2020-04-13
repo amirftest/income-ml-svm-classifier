@@ -72,7 +72,8 @@ def parse(split_line_array):
         return x, y_value
 
     except Exception as e:
-        return None,None
+        print(e)
+        return None, None
 
 
 

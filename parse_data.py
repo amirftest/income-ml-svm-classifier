@@ -21,12 +21,12 @@ def parse_data(data_file_full_path):
         if MISSING_DATA not in line:  # skip lines with partial data
             data = parse_line(line)  # removing commas and whitespaces
             if len(data) == DATA_FEATURES:
-                    x, y = parse(data)
-                    if x != None and y != None:
-                        final_x_matrix.append(x)
-                        final_y_vector.append(y)
-                    else:
-                        corrupted_data=True
-    return final_x_matrix, final_y_vector,corrupted_data
+                x, y = parse(data)
+                if x is not None and y is not None:
+                    final_x_matrix.append(x)
+                    final_y_vector.append(y)
+                else:
+                    corrupted_data = True
+    return final_x_matrix, final_y_vector, corrupted_data
 
 

@@ -47,4 +47,4 @@ class SVMHandler:
 
 
 if __name__ == "__main__":
-    mysvm = SVMHandler()
+    my_svm = SVMHandler()

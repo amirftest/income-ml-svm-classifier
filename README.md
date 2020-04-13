@@ -5,11 +5,11 @@
   
   ####SVM_handler
   * For training the svm machine, i used SCV(C-Support Vector Classification),  and applied the SelectKBest ,feature selection algorithm, to minimize the error percentage.
- * training/testing status var was created to handle multi-thread environment and preventing unnecessary repeated job
+ * training/testing status var was created to handle multi-thread environment and preventing unnecessary repeated job.
   
   ####GUI
   * I've used tkinter for making the gui and messagebox to alert the user. In order to make the gui responsive, for each task a new thread will be created.
-   * To handle Cuncurrency issues, a boolean var will be checked to see if some task already been done / in process
+   * To handle Cuncurrency issues, a boolean var will be checked to see if some task already been done / in process.
   
 ## Installation
 
@@ -19,7 +19,7 @@
     ```
     python gui.py
     ``` 
-  * Follow the instructions
+  * Follow the instructions.
   
 ## Apendix - Finding the best K Features
   * k = 1:   &nbsp;  &nbsp; 24.568393094289508   &nbsp;  &nbsp;(Martial-status)

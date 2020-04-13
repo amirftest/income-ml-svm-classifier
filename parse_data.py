@@ -4,6 +4,9 @@ MISSING_DATA = "?"
 DATA_FEATURES = 15
 
 
+# ----------------------------------------------------------------------------
+# Removing commas and whitespaces from the data line
+# -------------x--------------------------------------------------------------
 def parse_line(line):
     features_array = line.split(',')
     return list(map(str.strip, features_array))
@@ -18,9 +21,9 @@ def parse_data(data_file_full_path):
     final_x_matrix = list()
     final_y_vector = list()
     for line in f.readlines():
-        if MISSING_DATA not in line:  # skip lines with partial data
-            data = parse_line(line)  # removing commas and whitespaces
-            if len(data) == DATA_FEATURES:
+        if MISSING_DATA not in line:  # we'll skip lines with partial data
+            data = parse_line(line)
+            if len(data) == DATA_FEATURES:  # make sure the data line has all the features
                 x, y = parse(data)
                 if x is not None and y is not None:
                     final_x_matrix.append(x)

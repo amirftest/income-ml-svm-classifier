@@ -1,22 +1,22 @@
 __author__ = 'amirf'
-
 from tkinter import *
-from tkinter import ttk
 from gui_text import *
 from svm_handler import SVMHandler
 from mail import sendemail
 from status import *
 from tkinter import messagebox
 import threading
-from tkinter.filedialog import askopenfilename
+
 
 def run_gui():
     svm_handler = SVMHandler()
     root = Tk()
     root.title("SVM GUI")
     root.geometry('330x275')
-    # frame, grid, row and column configurations of the root.
 
+    # -------------------------------------------------------------------------------------
+    #                       Executing new thread for each task
+    # -------------------------------------------------------------------------------------
     def activate_train():
         threading.Thread(target=activate_train_util, name="activate_train").start()
 
@@ -25,6 +25,11 @@ def run_gui():
 
     def send_mail():
         threading.Thread(target=send_mail_util, name="send_mail").start()
+
+    # -------------------------------------------------------------------------------------
+    #  Util Functions - handle concurrency and alerting the user
+    #  for errors/completion of the tasks
+    # -------------------------------------------------------------------------------------
 
     def send_mail_util():
         error_percentage = svm_handler.get_error_percentage()
@@ -38,12 +43,6 @@ def run_gui():
                 messagebox.showinfo("Success", LABEL_EMAIL_IN_PROGRESS)
             elif res == -1:
                 messagebox.showerror("Error", LABEL_EMAIL_FAILED)
-
-    def check_if_corrupted_data():
-        if svm_handler.corrupted_data:
-            return LABEL_SOME_CORRUPTED_DATA
-        else:
-            return ""
 
     def activate_train_util():
         training_status = svm_handler.training_status
@@ -73,9 +72,21 @@ def run_gui():
         elif testing_status == Status.DONE:
             messagebox.showinfo("Alert", LABEL_TESTING_FINISHED)
 
+    # -------------------------------------------------------------------------------------
+    #  Util Functions for handling corrupted data and creating buttong for GUI
+    # -------------------------------------------------------------------------------------
+    def check_if_corrupted_data():
+        if svm_handler.corrupted_data:
+            return LABEL_SOME_CORRUPTED_DATA
+        else:
+            return ""
+
     def create_button(text, command):
         Button(root, text=text, padx=50, bg = "white", command=command).pack(pady=4)
 
+    # -------------------------------------------------------------------------------------
+    #                       creating labels and button for the GUI
+    # -------------------------------------------------------------------------------------
     Label(root, text=LABEL_INTRO, wraplength=330).pack(expand=True)
     Label(root, text=LABEL_INSTRUCTION, wraplength=330, justify=LEFT).pack(expand=True, anchor="w")
     create_button("Run Training", activate_train)

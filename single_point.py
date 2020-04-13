@@ -33,44 +33,47 @@ native_country_values = ['United-States', 'Cambodia', 'England', 'Puerto-Rico',
 def parse(split_line_array):
     """ each line will be converted to the correct numeric value and will be inserted to a 1xM vector (x vector)
     """
+    try:
+        x = list()
+        # Age
+        x.append(split_line_array[0])
+        # Work-class
+        x.append(work_class_values.index(split_line_array[1]))
+        # fnlwgt
+        x.append(split_line_array[2])
+        # Education
+        x.append(education_values.index(split_line_array[3]))
+        # Education-num
+        x.append(split_line_array[4])
+        # Martial-status
+        x.append(marital_status_values.index(split_line_array[5]))
+        # Occupation
+        x.append(occupation_values.index(split_line_array[6]))
+        # Relationship
+        x.append(relationship_values.index(split_line_array[7]))
+        # Race
+        x.append(race_values.index(split_line_array[8]))
+        # Sex
+        x.append(sex_values.index(split_line_array[9]))
+        # Capital-gain
+        x.append(split_line_array[10])
+        # Capital-loss
+        x.append(split_line_array[11])
+        # Hours-per-week
+        x.append(split_line_array[12])
+        # Native-country
+        x.append(native_country_values.index(split_line_array[13]))
 
-    x = list()
-    # Age
-    x.append(split_line_array[0])
-    # Work-class
-    x.append(work_class_values.index(split_line_array[1]))
-    # fnlwgt
-    x.append(split_line_array[2])
-    # Education
-    x.append(education_values.index(split_line_array[3]))
-    # Education-num
-    x.append(split_line_array[4])
-    # Martial-status
-    x.append(marital_status_values.index(split_line_array[5]))
-    # Occupation
-    x.append(occupation_values.index(split_line_array[6]))
-    # Relationship
-    x.append(relationship_values.index(split_line_array[7]))
-    # Race
-    x.append(race_values.index(split_line_array[8]))
-    # Sex
-    x.append(sex_values.index(split_line_array[9]))
-    # Capital-gain
-    x.append(split_line_array[10])
-    # Capital-loss
-    x.append(split_line_array[11])
-    # Hours-per-week
-    x.append(split_line_array[12])
-    # Native-country
-    x.append(native_country_values.index(split_line_array[13]))
+        y_value = str(split_line_array[14])
+        if y_value.__contains__('<=50K'):
+            y_value = 0
+        else:
+            y_value = 1
+        return x, y_value
 
-    y_value = str(split_line_array[14])
-    if y_value.__contains__('<=50K'):
-        y_value = 0
-    else:
-        y_value = 1
+    except Exception as e:
+        return None,None
 
-    return x, y_value
 
 
 

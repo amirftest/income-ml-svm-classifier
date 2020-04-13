@@ -1,4 +1,5 @@
 __author__ = 'amirf'
+
 from tkinter import *
 from tkinter import ttk
 from svm_handler import SVMHandler
@@ -6,6 +7,7 @@ from mail import sendemail
 from status import *
 from tkinter import messagebox
 import threading
+
 
 def run_gui():
     svm_handler = SVMHandler()
@@ -28,15 +30,28 @@ def run_gui():
 
     def send_mail_util():
         error_percentage = svm_handler.get_error_percentage()
-        if error_percentage>=0:
-            sendemail(error_percentage)
+        if error_percentage == -1:
+            messagebox.showerror("Error",
+                                 "Please run testing in order to calculate the error percentage or wait until testing is over before sending email")
+        if error_percentage >= 0:
+            res = sendemail(error_percentage)
+            if res == Status.DONE:
+                messagebox.showinfo("Success", "Email was sent")
+            else:
+                messagebox.showinfo("Success", "Sending email is in progress")
+
+    def check_if_corrupted_data():
+        if svm_handler.corrupted_data==True:
+            return "Pay Attention, some data was found to be corrupted"
+        else:
+            return ""
 
     def activate_train_util():
         training_status = svm_handler.training_status
         if svm_handler.training_status == Status.UNINITIALIZED:
             svm_handler.run_train()
             if svm_handler.training_status == Status.DONE:
-                messagebox.showinfo("Success", "Completed Training")
+                messagebox.showinfo("Success", "Completed Training. "+check_if_corrupted_data())
             else:
                 messagebox.showerror("Error", "Training Data is corrupted")
         elif training_status == Status.IN_PROGRESS:
@@ -51,7 +66,7 @@ def run_gui():
         elif testing_status == Status.UNINITIALIZED:
             svm_handler.run_test()
             if svm_handler.testing_status == Status.DONE:
-                messagebox.showinfo("Success", "Completed Testing")
+                messagebox.showinfo("Success", "Completed Testing. "+check_if_corrupted_data())
             else:
                 messagebox.showerror("Error", "Testing Data is corrupted")
         elif testing_status == Status.IN_PROGRESS:
@@ -59,20 +74,20 @@ def run_gui():
         elif testing_status == Status.DONE:
             messagebox.showinfo("Alert", "Testing was finished, you can now send the results")
 
-
     def create_button(text, command, row):
         Button(root, text=text, padx=50, command=command).pack()
         # Button(root, text=text, padx=50, command=command).grid(row=row, column=0, pady=5, sticky="")
 
-
-    Label(root, text="This program was developed to demonstrate the usage of SVM for classification and regression analysis.\n We'll examine whether a person’s income is higher or lower than 50K according to several features.\nInstructions:\n1. Run Training\n 2. Run Testing to calculate the prectnage error\n 3. Send the results by email").pack()
-    #Label(root, text="This program was developed to demonstrate the usage of SVM for classification and regression analysis.\n We'll examine whether a person’s income is higher or lower than 50K according to several features.\nInstructions:\n1. Run Training\n 2. Run Testing to calculate the prectnage error\n 3. Send the results by email").grid(row=0,column=0, pady=5)
+    Label(root, text="This program was developed to demonstrate the usage of SVM for classification and regression "
+                     "analysis.\n""We'll examine whether a person’s income is higher or lower than 50K according to "
+                     "several features.\n" "Instructions:\n1. Run Training\n 2. Run Testing to calculate the "
+                     "prectnage error\n " " 3. Send the results by email").pack()
+    # Label(root, text="This program was").grid(row=0,column=0, pady=5)
     create_button("Run Training", activate_train, 1)
     create_button("Run Testing", activate_test, 2)
     create_button("Send Results", send_mail, 3)
 
     root.mainloop()
-
 
 
 if __name__ == "__main__":

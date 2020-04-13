@@ -12,7 +12,7 @@
    * To handle Cuncurrency issues, a boolean var will be checked to see if some task already been done / in process.
   
 ## Prerequisites
-  * Python3 Installed
+  * Python3 >= 3.6  Installed
   
 ## Installation
 

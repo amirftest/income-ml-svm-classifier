@@ -17,7 +17,7 @@ def sendemail(result):
     if email_status == Status.UNINITIALIZED:
         email_status == Status.IN_PROGRESS
         try:
-                email_status = Status.IN_PROGRESS
+            email_status = Status.IN_PROGRESS
             message = MIMEMultipart()
             message['From'] = sender_address
             message['To'] = receiver_address

@@ -9,6 +9,11 @@ import threading
 
 
 def run_gui():
+
+    # -------------------------------------------------------------------------------------
+    #                       Init the GUI by using Tkinter
+    # -------------------------------------------------------------------------------------
+
     svm_handler = SVMHandler()
     root = Tk()
     root.title("SVM GUI")
@@ -27,8 +32,8 @@ def run_gui():
         threading.Thread(target=send_mail_util, name="send_mail").start()
 
     # -------------------------------------------------------------------------------------
-    #  Util Functions - handle concurrency and alerting the user
-    #  for errors/completion of the tasks
+    #  Util Task Functions - handle concurrency and alerting the user
+    #  for errors & completion of the tasks
     # -------------------------------------------------------------------------------------
 
     def send_mail_util():
@@ -75,6 +80,7 @@ def run_gui():
     # -------------------------------------------------------------------------------------
     #  Util Functions for handling corrupted data and creating buttong for GUI
     # -------------------------------------------------------------------------------------
+
     def check_if_corrupted_data():
         if svm_handler.corrupted_data:
             return LABEL_SOME_CORRUPTED_DATA

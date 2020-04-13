@@ -47,6 +47,7 @@ class SVMHandler:
 
 
     def run_test(self):
+
         # -------------------------------------------------------------------------------------
         # Start Training and parse the data in case the user didn't
         # do it already and only if we finished the training.

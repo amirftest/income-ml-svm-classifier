@@ -4,7 +4,7 @@
 ## Implementation Details
   
 #### SVM_handler
- * For training the svm machine, i used SCV(C-Support Vector Classification),  and applied the SelectKBest ,feature selection algorithm, to minimize the error percentage.
+ * For training the svm machine, i used SCV(C-Support Vector Classification),  and applied the SelectKBest - feature selection algorithm, to minimize the error percentage.
  * training/testing status var was created to handle multi-thread environment and preventing unnecessary repeated job.
   
 #### GUI

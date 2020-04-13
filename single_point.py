@@ -36,15 +36,15 @@ def parse(split_line_array):
     try:
         x = list()
         # Age
-        x.append(split_line_array[0])
+        x.append(int(split_line_array[0]))
         # Work-class
-        x.append(work_class_values.index(split_line_array[1]))
+        x.append(int(work_class_values.index(split_line_array[1])))
         # fnlwgt
-        x.append(split_line_array[2])
+        x.append(int(split_line_array[2]))
         # Education
-        x.append(education_values.index(split_line_array[3]))
+        x.append(int(education_values.index(split_line_array[3])))
         # Education-num
-        x.append(split_line_array[4])
+        x.append(int(split_line_array[4]))
         # Martial-status
         x.append(marital_status_values.index(split_line_array[5]))
         # Occupation
@@ -56,11 +56,11 @@ def parse(split_line_array):
         # Sex
         x.append(sex_values.index(split_line_array[9]))
         # Capital-gain
-        x.append(split_line_array[10])
+        x.append(int(split_line_array[10]))
         # Capital-loss
-        x.append(split_line_array[11])
+        x.append(int(split_line_array[11]))
         # Hours-per-week
-        x.append(split_line_array[12])
+        x.append(int(split_line_array[12]))
         # Native-country
         x.append(native_country_values.index(split_line_array[13]))
 

@@ -8,7 +8,7 @@ from mail import sendemail
 from status import *
 from tkinter import messagebox
 import threading
-
+from tkinter.filedialog import askopenfilename
 
 def run_gui():
     svm_handler = SVMHandler()
@@ -34,8 +34,10 @@ def run_gui():
             res = sendemail(error_percentage)
             if res == Status.DONE:
                 messagebox.showinfo("Success", LABEL_EMAIL_SENT)
-            else:
+            elif res == Status.IN_PROGRESS:
                 messagebox.showinfo("Success", LABEL_EMAIL_IN_PROGRESS)
+            elif res == -1:
+                messagebox.showerror("Error", LABEL_EMAIL_FAILED)
 
     def check_if_corrupted_data():
         if svm_handler.corrupted_data:
@@ -71,14 +73,14 @@ def run_gui():
         elif testing_status == Status.DONE:
             messagebox.showinfo("Alert", LABEL_TESTING_FINISHED)
 
-    def create_button(text, command, row):
-        Button(root, text=text, padx=50,bg = "white", command=command).pack(pady=4)
+    def create_button(text, command):
+        Button(root, text=text, padx=50, bg = "white", command=command).pack(pady=4)
 
     Label(root, text=LABEL_INTRO, wraplength=330).pack(expand=True)
     Label(root, text=LABEL_INSTRUCTION, wraplength=330, justify=LEFT).pack(expand=True, anchor="w")
-    create_button("Run Training", activate_train, 1)
-    create_button("Run Testing", activate_test, 2)
-    create_button("Send Results", send_mail, 3)
+    create_button("Run Training", activate_train)
+    create_button("Run Testing", activate_test)
+    create_button("Send Results", send_mail)
 
     root.mainloop()
 

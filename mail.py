@@ -2,9 +2,7 @@
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from tkinter import messagebox
 from status import *
-
 
 email_status = Status.UNINITIALIZED
 
@@ -13,7 +11,7 @@ def sendemail(result):
     sender_address = 'amirftestclassifier@gmail.com'
     sender_pass = 'testclassifier'
     receiver_address = "amirf2@gmail.com"
-    mail_content = f"Hey VelisMedia,\nThe Error Percentage is {result}.\nThank You"
+    mail_content = f"Hey VelisMedia,\nThe Error Percentage is {result}.\nBest Regards,\nAmir."
     if email_status == Status.UNINITIALIZED:
         email_status == Status.IN_PROGRESS
         try:
@@ -33,7 +31,8 @@ def sendemail(result):
             email_status = Status.UNINITIALIZED
             return Status.DONE
         except Exception as e:
-            messagebox.showerror("Error", e)
+            print(e)
+            return -1
     else:
         return email_status
 

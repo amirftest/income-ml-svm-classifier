@@ -9,7 +9,7 @@ LABEL_SOME_CORRUPTED_DATA = "Pay Attention, some data was found to be corrupted"
 LABEL_TRAINING_FINISHED = "Training was finished, please proceed to Testing"
 LABEL_TESTING_FINISHED = "Testing was finished, you can now send the results"
 LABEL_TRAIN_BEFORE_TEST = "Please run training before testing or wait until training is over"
-
+LABEL_EMAIL_FAILED = "Failed to send"
 
 def label_already_defined(string):
     return f"{string} is already running, please wait until it's finished"

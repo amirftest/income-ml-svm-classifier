@@ -21,7 +21,7 @@
     ``` 
   * Follow the instructions
   
-##Apendix - Finding the best K Features
+## Apendix - Finding the best K Features
   * k = 1:   &nbsp;  &nbsp; 24.568393094289508   &nbsp;  &nbsp;(Martial-status)
   * k = 2:   &nbsp;  &nbsp; 18.300132802124832   &nbsp;  &nbsp;(Education-num, Martial-status)
   * k = 3:   &nbsp;  &nbsp; 18.97078353253652   &nbsp;&nbsp;&nbsp;&nbsp; (Age, Education-num, Martial-status)

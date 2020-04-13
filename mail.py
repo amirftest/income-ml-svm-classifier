@@ -10,8 +10,8 @@ def sendemail(result):
     global email_status
     sender_address = 'amirftestclassifier@gmail.com'
     sender_pass = 'testclassifier'
-    receiver_address = "amirf2@gmail.com"
-    mail_content = f"Hey VelisMedia,\nThe Error Percentage is {result}.\nBest Regards,\nAmir."
+    receiver_address = "hadas.c@velismedia.com"
+    mail_content = f"Hey VelisMedia,\n\nThe Error Percentage is {result}.\n\nBest Regards,\nAmir."
     if email_status == Status.UNINITIALIZED:
         email_status == Status.IN_PROGRESS
         try:
@@ -19,7 +19,7 @@ def sendemail(result):
             message = MIMEMultipart()
             message['From'] = sender_address
             message['To'] = receiver_address
-            message['Subject'] = 'Finished The Program'
+            message['Subject'] = 'Amir Friedman | Home Assignment'
             message.attach(MIMEText(mail_content, 'plain'))
             session = smtplib.SMTP('smtp.gmail.com', 587)
             session.ehlo()

@@ -1,6 +1,6 @@
 
 
-LABEL_INTRO = "This program was developed to demonstrate the usage of SVM for classification and regression analysis. We'll examine whether a person’s income is higher or lower than 50K according to several features"
+LABEL_INTRO = "This program was developed to demonstrate the usage of SVM for classification analysis. We'll examine whether a person’s income is higher or lower than 50K according to several features"
 LABEL_INSTRUCTION = "Instructions:\n1. Run Training\n2. Run Testing to calculate the prectnage error\n3. Send the results by email"
 LABEL_EMAIL_NOT_READY = "Please run testing in order to calculate the error percentage or wait until testing is over before sending email"
 LABEL_EMAIL_SENT = "Email was sent"
